@@ -1,5 +1,3 @@
-// Заменяем абстрактный класс на интерфейс
 interface Operation {
-    String execute(String a, String b, int radix);
-
+    long execute(String a, String b, int radix); // Теперь возвращает long (десятичное число)
 }

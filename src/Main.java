@@ -26,11 +26,12 @@ public class Main {
                 calculator.setRadix(radix);
                 continue;
             }
-            //Вводим числа
+
             System.out.println("Введите первое число:");
             String a = scanner.nextLine().toUpperCase();
             System.out.println("Введите второе число:");
             String b = scanner.nextLine().toUpperCase();
+
             try {
                 Operation operation = switch (choice) {
                     case 1 -> new AddOperation();
@@ -39,11 +40,21 @@ public class Main {
                     case 4 -> new DivideOperation();
                     default -> throw new IllegalArgumentException("Неверная операция");
                 };
-                System.out.println("Результат: " + calculator.calculate(operation, a, b));
+
+                // Получаем результат в десятичной системе
+                long decimalResult = operation.execute(a, b, radix);
+
+                // Выводим во всех системах счисления
+                System.out.println("\n" + NumberConverter.formatInAllBases(decimalResult));
+
+                // Выводим результат в выбранной системе
+                String result = NumberConverter.fromDecimal(decimalResult, radix);
+                System.out.println("Результат в выбранной СС: " + result);
             } catch (Exception e) {
                 System.out.println("Ошибка: " + e.getMessage());
             }
         }
+
         scanner.close();
     }
 }

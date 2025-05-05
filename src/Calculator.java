@@ -6,7 +6,8 @@ class Calculator {
     }
 
     public String calculate(Operation operation, String a, String b) {
-        return operation.execute(a, b, currentRadix);
+        long decimalResult = operation.execute(a, b, currentRadix);
+        return NumberConverter.fromDecimal(decimalResult, currentRadix);
     }
 
     public void setRadix(int radix) {

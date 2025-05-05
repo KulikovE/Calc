@@ -26,12 +26,11 @@ public class Main {
                 calculator.setRadix(radix);
                 continue;
             }
-
+            //Вводим числа
             System.out.println("Введите первое число:");
             String a = scanner.nextLine().toUpperCase();
             System.out.println("Введите второе число:");
             String b = scanner.nextLine().toUpperCase();
-
             try {
                 Operation operation = switch (choice) {
                     case 1 -> new AddOperation();
@@ -40,13 +39,11 @@ public class Main {
                     case 4 -> new DivideOperation();
                     default -> throw new IllegalArgumentException("Неверная операция");
                 };
-
                 System.out.println("Результат: " + calculator.calculate(operation, a, b));
             } catch (Exception e) {
                 System.out.println("Ошибка: " + e.getMessage());
             }
         }
-
         scanner.close();
     }
 }
